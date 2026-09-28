@@ -1,0 +1,41 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyMobileCTA from '../components/StickyMobileCTA.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, EMAIL } from '../consts';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = SITE_DESCRIPTION } = Astro.props;
+const pageTitle = title ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={pageTitle} description={description} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Distinct Corporate Solutions",
+      "alternateName": "DCS",
+      "description": SITE_DESCRIPTION,
+      "telephone": "+923003883300",
+      "email": EMAIL,
+      "foundingDate": "2018",
+      "areaServed": "Pakistan",
+      "knowsAbout": ["Corporate training", "Leadership development", "Business consulting", "Organisational development"]
+    })} />
+  </head>
+  <body class="bg-bone text-char font-sans">
+    <Header />
+    <slot />
+    <div class="pb-20 md:pb-0"></div>
+    <Footer />
+    <StickyMobileCTA />
+  </body>
+</html>

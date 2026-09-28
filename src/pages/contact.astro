@@ -1,0 +1,387 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PHONE_DISPLAY, PHONE_HREF, EMAIL, WEB3FORMS_ACCESS_KEY } from '../consts';
+import { programmes, values } from '../data';
+
+const fieldClass =
+  'w-full border border-line rounded-sm px-4 py-3 text-base text-ink bg-bone placeholder:text-mute focus:outline-none focus:border-moss transition-colors';
+---
+
+<Layout
+  title="Contact"
+  description="Tell Distinct Corporate Solutions about your team and your goals, and we will put together a training plan built around them."
+>
+  <!-- Page header -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <h1
+        class="font-serif font-medium text-4xl md:text-5xl text-ink tracking-tight mb-6 max-w-xl"
+      >
+        Get in touch
+      </h1>
+      <p class="text-base md:text-lg text-char leading-relaxed max-w-2xl">
+        Tell us about your team and what you'd like to change. We'll reply with a suggested
+        programme or plan. If you'd rather talk it through first, call or email us directly.
+      </p>
+    </div>
+  </section>
+
+  <!-- Form + contact details -->
+  <section class="pb-24 md:pb-32">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 lg:gap-16 items-start">
+
+        <!-- Left: Enquiry form -->
+        <div>
+          <form id="contact-form" novalidate class="space-y-6" data-access-key={WEB3FORMS_ACCESS_KEY}>
+            <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+            <input type="hidden" name="subject" value="New enquiry — Distinct Corporate Solutions" />
+            <input type="checkbox" name="botcheck" class="hidden" aria-hidden="true" />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Name -->
+              <div>
+                <label for="name" class="block text-sm font-medium text-ink mb-1.5">
+                  Full name <span class="text-moss" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  minlength="2"
+                  maxlength="80"
+                  autocomplete="name"
+                  aria-describedby="name-error"
+                  class={fieldClass}
+                />
+                <p id="name-error" class="hidden mt-1.5 text-sm text-red-600" role="alert"></p>
+              </div>
+
+              <!-- Organisation -->
+              <div>
+                <label for="organisation" class="block text-sm font-medium text-ink mb-1.5">
+                  Organisation <span class="text-moss" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="organisation"
+                  name="organisation"
+                  required
+                  minlength="2"
+                  maxlength="120"
+                  autocomplete="organization"
+                  aria-describedby="organisation-error"
+                  class={fieldClass}
+                />
+                <p id="organisation-error" class="hidden mt-1.5 text-sm text-red-600" role="alert"></p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Email -->
+              <div>
+                <label for="email" class="block text-sm font-medium text-ink mb-1.5">
+                  Email <span class="text-moss" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="you@company.com"
+                  aria-describedby="email-error"
+                  class={fieldClass}
+                />
+                <p id="email-error" class="hidden mt-1.5 text-sm text-red-600" role="alert"></p>
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label for="phone" class="block text-sm font-medium text-ink mb-1.5">
+                  Phone <span class="text-moss" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="+92 300 0000000"
+                  aria-describedby="phone-error"
+                  class={fieldClass}
+                />
+                <p id="phone-error" class="hidden mt-1.5 text-sm text-red-600" role="alert"></p>
+              </div>
+            </div>
+
+            <!-- Interest -->
+            <div>
+              <label for="interest" class="block text-sm font-medium text-ink mb-1.5">
+                I'm interested in <span class="text-moss" aria-hidden="true">*</span>
+              </label>
+              <div class="relative">
+                <select
+                  id="interest"
+                  name="interest"
+                  required
+                  aria-describedby="interest-error"
+                  class:list={[fieldClass, 'appearance-none cursor-pointer']}
+                >
+                  <option value="" disabled selected>Select an option…</option>
+                  <optgroup label="Training programmes">
+                    {programmes.map((programme) => <option value={programme.name}>{programme.name}</option>)}
+                  </optgroup>
+                  <optgroup label="Other services">
+                    <option value="Customised training programme">Customised training programme</option>
+                    <option value="Business consulting">Business consulting</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                  </optgroup>
+                </select>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-mute"
+                  aria-hidden="true"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <p id="interest-error" class="hidden mt-1.5 text-sm text-red-600" role="alert"></p>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="message" class="block text-sm font-medium text-ink mb-1.5">
+                About your team and goals
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Who would take part, roughly how many people, and what you'd like them to achieve."
+                class:list={[fieldClass, 'resize-none']}
+              ></textarea>
+              <p class="mt-1.5 text-xs text-mute">
+                Optional, but the more detail you share, the better we can tailor our proposal.
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              class="inline-block px-8 py-3.5 bg-moss text-white font-medium text-base rounded-sm hover:bg-moss-dark transition-colors focus-visible:outline-2 focus-visible:outline-moss focus-visible:outline-offset-2"
+            >
+              Send enquiry
+            </button>
+          </form>
+
+          <div id="contact-success" class="hidden mt-8 p-6 border border-moss bg-sage rounded-sm">
+            <h3 class="text-xl font-serif text-ink">Thanks, we've received your enquiry.</h3>
+            <p class="mt-2 text-char">We'll get back to you to talk through what your team needs.</p>
+          </div>
+
+          <div id="contact-error" class="hidden mt-8 p-6 border border-red-300 bg-red-50 rounded-sm">
+            <h3 class="text-lg font-serif text-ink">Something went wrong.</h3>
+            <p class="mt-2 text-char">
+              Please try again, or contact us directly on <a href={PHONE_HREF} class="text-moss underline">{PHONE_DISPLAY}</a>
+              or <a href={`mailto:${EMAIL}`} class="text-moss underline">{EMAIL}</a>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Contact details -->
+        <div class="space-y-4">
+
+          <!-- Phone + email -->
+          <div class="bg-paper border border-line rounded-sm p-6 space-y-5">
+            <div>
+              <p class="text-sm text-mute mb-2">
+                Call us
+              </p>
+              <a href={PHONE_HREF} class="flex items-center gap-3 text-ink hover:text-moss transition-colors no-underline">
+                <span class="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full bg-leaf text-white" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.55 3.4 2 2 0 0 1 3.54 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </span>
+                <span class="font-medium text-base">{PHONE_DISPLAY}</span>
+              </a>
+            </div>
+
+            <div class="border-t border-line"></div>
+
+            <div>
+              <p class="text-sm text-mute mb-2">
+                Email us
+              </p>
+              <a href={`mailto:${EMAIL}`} class="flex items-center gap-3 text-ink hover:text-moss transition-colors no-underline">
+                <span class="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full bg-leaf text-white" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                </span>
+                <span class="font-medium text-sm">{EMAIL.split('@')[0]}<wbr />@{EMAIL.split('@')[1]}</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // ── Validators ───────────────────────────────────────────────────────────────
+  // Accepts Pakistani numbers (03xx…, +92…) and other international formats.
+  function isValidPhone(raw: string) {
+    const n = raw.replace(/[\s\-(). ]/g, '');
+    return /^(\+|00)?\d{9,15}$/.test(n);
+  }
+
+  const EMAIL_BLOCKLIST = new Set([
+    'test@test.com', 'test@example.com', 'a@a.com',
+    'asdf@asdf.com', 'admin@admin.com', 'foo@bar.com', 'aaa@aaa.com',
+  ]);
+
+  const validators: Record<string, (val: string) => string | null> = {
+    name(val) {
+      const t = val.trim();
+      if (t.length < 2 || t.length > 80 || /^(.)\1*$/.test(t)) return 'Please enter your name';
+      return null;
+    },
+    organisation(val) {
+      const t = val.trim();
+      if (t.length < 2 || t.length > 120) return 'Please enter your organisation';
+      return null;
+    },
+    email(val) {
+      const t = val.trim().toLowerCase();
+      if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(t)) return 'Please enter a valid email address';
+      if (EMAIL_BLOCKLIST.has(t)) return 'Please enter a real email address';
+      return null;
+    },
+    phone(val) {
+      if (!val.trim() || !isValidPhone(val)) return 'Please enter a valid phone number';
+      return null;
+    },
+    interest(val) {
+      if (!val) return 'Please select what you are interested in';
+      return null;
+    },
+  };
+
+  // ── DOM helpers ──────────────────────────────────────────────────────────────
+  function field(id: string) {
+    return document.getElementById(id) as HTMLInputElement | HTMLSelectElement | null;
+  }
+
+  function showError(fieldId: string, message: string) {
+    const el = field(fieldId);
+    const error = document.getElementById(fieldId + '-error');
+    if (!el || !error) return;
+    error.textContent = message;
+    error.classList.remove('hidden');
+    el.classList.add('border-red-400');
+    el.classList.remove('border-line');
+  }
+
+  function clearError(fieldId: string) {
+    const el = field(fieldId);
+    const error = document.getElementById(fieldId + '-error');
+    if (!el || !error) return;
+    error.textContent = '';
+    error.classList.add('hidden');
+    el.classList.remove('border-red-400');
+    el.classList.add('border-line');
+  }
+
+  function validateField(fieldId: string) {
+    const el = field(fieldId);
+    if (!el || !validators[fieldId]) return true;
+    const message = validators[fieldId](el.value);
+    if (message) { showError(fieldId, message); return false; }
+    clearError(fieldId);
+    return true;
+  }
+
+  // ── Blur / live re-validation ────────────────────────────────────────────────
+  const FIELDS = ['name', 'organisation', 'email', 'phone', 'interest'];
+  const touched = new Set<string>();
+
+  FIELDS.forEach((id) => {
+    const el = field(id);
+    if (!el) return;
+
+    el.addEventListener('blur', () => {
+      touched.add(id);
+      validateField(id);
+    });
+
+    const liveEvent = el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(liveEvent, () => {
+      if (touched.has(id) && !document.getElementById(id + '-error')?.classList.contains('hidden')) {
+        validateField(id);
+      }
+    });
+  });
+
+  // ── AJAX submit ──────────────────────────────────────────────────────────────
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successBox = document.getElementById('contact-success')!;
+  const errorBox = document.getElementById('contact-error')!;
+  const keyConfigured = !form.dataset.accessKey?.startsWith('REPLACE_');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const allValid = FIELDS.map((id) => { touched.add(id); return validateField(id); }).every(Boolean);
+    if (!allValid) {
+      const firstInvalidId = FIELDS.find((id) => !document.getElementById(id + '-error')?.classList.contains('hidden'));
+      const firstInvalidField = firstInvalidId ? field(firstInvalidId) : null;
+      firstInvalidField?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstInvalidField?.focus();
+      return;
+    }
+
+    // No form backend configured yet — point people to phone/email instead of failing silently.
+    if (!keyConfigured) {
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    errorBox.classList.add('hidden');
+
+    const json = JSON.stringify(Object.fromEntries(new FormData(form)));
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: json,
+      });
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        form.classList.add('hidden');
+        successBox.classList.remove('hidden');
+        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        errorBox.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    } catch {
+      errorBox.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+</script>

@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
+import { Image } from 'astro:assets';
+import { stats, values, clients, gallery } from '../data';
+---
+
+<Layout
+  title="About Us"
+  description="Distinct Corporate Solutions (DCS) has provided professional training and business consulting to organisations across Pakistan since 2018, in banking, mining, pharmaceuticals, education and the development sector."
+>
+
+  <!-- Hero -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-5">
+          <h1 class="font-serif font-medium text-4xl md:text-5xl text-ink tracking-tight mb-6">
+            About Distinct Corporate Solutions
+          </h1>
+          <p class="text-base md:text-lg text-char leading-relaxed mb-5">
+            DCS was set up in 2018 to give organisations practical training and business advice
+            from people who have done the work themselves.
+          </p>
+          <p class="text-base md:text-lg text-char leading-relaxed">
+            Since then we have worked with the State Bank of Pakistan, Reko Diq Mining Company,
+            BUITEMS, Beaconhouse and Sardar Bahadur Khan Women's University, among others. Our work
+            covers everything from email etiquette for mid-level staff to leadership coaching for
+            new managers.
+          </p>
+        </div>
+
+        <div class="md:col-span-7">
+          <Image
+            src={gallery[1].image}
+            width={768}
+            alt={gallery[1].alt}
+            class="w-full aspect-[4/3] md:aspect-[3/2] rounded-sm object-cover object-[65%_center]"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- In numbers -->
+  <section class="border-y border-line">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <dl class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-line">
+        {stats.map((stat) => (
+          <div class="py-8 px-4 md:px-6 first:pl-0">
+            <dt class="text-sm text-mute mb-1">{stat.label}</dt>
+            <dd class="font-serif text-3xl text-ink">{stat.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Mission, vision and values -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div class="space-y-10">
+          <div>
+            <h2 class="font-serif font-medium text-2xl md:text-3xl text-ink mb-4">Our mission</h2>
+            <p class="text-base md:text-lg text-char leading-relaxed">
+              To help businesses grow through capability development, targeted training and
+              strategic consulting, with results that can be measured and that last.
+            </p>
+          </div>
+          <div>
+            <h2 class="font-serif font-medium text-2xl md:text-3xl text-ink mb-4">Our vision</h2>
+            <p class="text-base md:text-lg text-char leading-relaxed">
+              To become Pakistan's most trusted partner in workforce development, organisational
+              capability building and corporate transformation.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif font-medium text-2xl md:text-3xl text-ink mb-4">What we hold ourselves to</h2>
+          <dl class="divide-y divide-line border-y border-line">
+            {values.map((value) => (
+              <div class="py-5">
+                <dt class="font-semibold text-ink mb-1">{value.name}</dt>
+                <dd class="text-base text-char leading-relaxed">{value.body}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section class="py-20 md:py-28 bg-paper">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <h2 class="font-serif font-medium text-3xl md:text-4xl text-ink tracking-tight mb-6">
+        Clients
+      </h2>
+      <p class="text-base md:text-lg text-char leading-relaxed max-w-2xl mb-12">
+        National institutions, major industry, universities, schools and community organisations.
+      </p>
+
+      <ul class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {clients.map((client) => (
+          <li class="bg-bone rounded-sm h-32 md:h-36 flex items-center justify-center p-5">
+            <Image src={client.logo} alt={client.name} height={160} class="max-h-full w-auto object-contain" loading="lazy" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Photo -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <Image
+        src={gallery[0].image}
+        width={1600}
+        alt={gallery[0].alt}
+        class="w-full aspect-[4/3] md:aspect-[16/9] object-cover rounded-sm"
+        loading="lazy"
+      />
+      <p class="mt-3 text-sm text-mute">Participants with their certificates after an on-site programme.</p>
+    </div>
+  </section>
+
+  <ClosingCTA />
+
+</Layout>

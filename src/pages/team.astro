@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
+import { team } from '../data';
+---
+
+<Layout
+  title="Our Trainers"
+  description="The Distinct Corporate Solutions trainer pool: consultants, practitioners and academics in HR, corporate training, business strategy and organisational development."
+>
+  <!-- Hero -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-end">
+        <h1 class="font-serif font-medium text-4xl md:text-5xl text-ink tracking-tight">
+          Our trainers
+        </h1>
+        <p class="text-base md:text-lg text-char leading-relaxed">
+          Twelve trainers with backgrounds in HR, corporate training, psychology, IT, media and
+          development work, some of them PhD-qualified. We match the trainer to the programme, so
+          the person running your session teaches that subject regularly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team list -->
+  <section class="pb-20 md:pb-28">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-16 border-t border-line">
+        {
+          team.map((member) => (
+            <li class="py-8 border-b border-line">
+              <div class="flex items-baseline justify-between gap-4 mb-3">
+                <h2 class="font-serif font-medium text-xl text-ink">{member.name}</h2>
+                <span class="shrink-0 text-sm text-mute">{member.sessions} sessions</span>
+              </div>
+              <p class="text-base text-char leading-relaxed mb-3">{member.bio}</p>
+              <p class="text-sm text-moss font-medium">Leads {member.leads}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <ClosingCTA
+    heading="Want a particular trainer?"
+    body="Let us know when you get in touch. We'll check their availability for your dates."
+  />
+</Layout>

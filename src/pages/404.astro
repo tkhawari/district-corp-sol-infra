@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout title="Page not found">
+  <main class="max-w-7xl mx-auto px-6 md:px-8 py-24 md:py-32">
+    <h1 class="font-serif font-medium text-4xl md:text-5xl text-ink tracking-tight mb-6">
+      We couldn't find that page
+    </h1>
+    <p class="text-base md:text-lg text-char leading-relaxed max-w-xl mb-8">
+      It may have moved, or the link may be mistyped.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <Button href="/" variant="primary">Go to the home page</Button>
+      <Button href="/contact" variant="secondary">Contact us</Button>
+    </div>
+  </main>
+</Layout>

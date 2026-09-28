@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource-variable/lora";
+
+@theme {
+  --color-ink: #1f2428;
+  --color-char: #33393e;
+  --color-mute: #6b7075;
+  --color-line: #e3e5e2;
+  --color-paper: #f6f7f4;
+  --color-bone: #ffffff;
+  --color-sage: #edf4e3;
+  --color-leaf: #97c459;
+  --color-moss: #4a7a1f;
+  --color-moss-dark: #3a6117;
+
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Lora Variable', Georgia, serif;
+}
+
+.sr-only {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
