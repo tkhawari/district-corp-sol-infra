@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://distinctcorporatesolutions.com/sitemap-index.xml
